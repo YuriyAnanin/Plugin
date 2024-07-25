@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <title>YurHistory</title>
+</head>
+<body>
+    <main class="main">
+        <div class="main__header">
+            <img src="img/icon.png" alt="" class="main__logo-img">
+            <h1 class="main__main-title">
+                YurHistory
+            </h1>
+        </div>
+        <form class="main__form">
+            <div class="main__form-wrap">
+                <input type="text" class="main__form-input" required placeholder="Введите ключевые слова" maxlength="20">
+                <button type="button" class="main__form-btn">
+                    <img src="img/find.svg" alt="" class="main__search-icon">
+                </button>
+            </div>
+        </form>
+        <section class="main__history-wrap">
+            <div class="main__sort-wrap">
+                <a href="#" class="main__sort-link">
+                    <img src="img/filter.svg" alt="" class="main__sort-icon">
+                </a>
+                <div class="main__sort-list-wrap">
+                    <button type="button" class="main__sort-close">
+                        <img src="img/close.svg" alt="Закрыть сортировку" class="main__sort-close-icon">
+                    </button>
+                    <ul class="main__sort-list">
+                        <li class="main__sort-item up">
+                            <input type="radio" class="main__sort-radio js_sort_radio" name="list_sort" id="sort_1"
+                             data-type="by_date">
+                            <label for="sort_1" class="main__sort-label">По дате посещения</label>
+                        </li>
+                        <li class="main__sort-item down">
+                            <input type="radio" class="main__sort-radio js_sort_radio" name="list_sort" id="sort_2"
+                                data-type="by_value">
+                            <label for="sort_2" class="main__sort-label">По частоте посещения</label>
+                        </li>
+                    </ul>
+                    <button type="button" class="main__sort-reset js_reset_sort red"
+                        onclick="reset_sort(this)">Сбросить</a>
+                </div>
+            </div>
+            <div class="main__history-days">
+            </div>
+        </section>
+        <ul class="main__reset-btns-list">
+            <li class="main__reset-btns-item">
+                <button type="button" class="main__reset-btn js_reset_history" data-type="history" data-value="h">Очистить историю</button>
+                <div class="main__sort-list-wrap">
+                    <button type="button" class="main__sort-close js_delete_close">
+                        <img src="img/close.svg" alt="Закрыть сортировку" class="main__sort-close-icon">
+                    </button>
+                    <ul class="main__sort-list">
+                        <li class="main__sort-item">
+                            <input type="radio" class="main__sort-radio js_delete_radio" name="delete_sort" id="delete_1" checked data-type="h">
+                            <label for="delete_1" class="main__sort-label">Последний час</label>
+                        </li>
+                        <li class="main__sort-item">
+                            <input type="radio" class="main__sort-radio js_delete_radio" name="delete_sort" id="delete_2" data-type="24h">
+                            <label for="delete_2" class="main__sort-label">Последние 24 часа</label>
+                        </li>
+                        <li class="main__sort-item">
+                            <input type="radio" class="main__sort-radio js_delete_radio" name="delete_sort" id="delete_3" data-type="7d">
+                            <label for="delete_3" class="main__sort-label">Последние 7 дней</label>
+                        </li>
+                        <li class="main__sort-item">
+                            <input type="radio" class="main__sort-radio js_delete_radio" name="delete_sort" id="delete_4" data-type="4w">
+                            <label for="delete_4" class="main__sort-label">Последние 4 недели</label>
+                        </li>
+                        <li class="main__sort-item">
+                            <input type="radio" class="main__sort-radio js_delete_radio" name="delete_sort" id="delete_5" data-type="a">
+                            <label for="delete_5" class="main__sort-label">Все время</label>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="main__reset-btns-item">
+                <button type="button" class="main__reset-btn js_reset_history" data-type="cache" data-value="h">Очистить кэш и cookies</button>
+                <div class="main__sort-list-wrap">
+                    <button type="button" class="main__sort-close js_delete_close">
+                        <img src="img/close.svg" alt="Закрыть сортировку" class="main__sort-close-icon">
+                    </button>
+                    <ul class="main__sort-list">
+                        <li class="main__sort-item">
+                            <input type="radio" class="main__sort-radio js_delete_radio" name="delete_sort_cache"
+                                id="delete_6" checked data-type="h">
+                            <label for="delete_6" class="main__sort-label">Последний час</label>
+                        </li>
+                        <li class="main__sort-item">
+                            <input type="radio" class="main__sort-radio js_delete_radio" name="delete_sort_cache"
+                                id="delete_7" data-type="24h">
+                            <label for="delete_7" class="main__sort-label">Последние 24 часа</label>
+                        </li>
+                        <li class="main__sort-item">
+                            <input type="radio" class="main__sort-radio js_delete_radio" name="delete_sort_cache"
+                                id="delete_8" data-type="7d">
+                            <label for="delete_8" class="main__sort-label">Последние 7 дней</label>
+                        </li>
+                        <li class="main__sort-item">
+                            <input type="radio" class="main__sort-radio js_delete_radio" name="delete_sort_cache"
+                                id="delete_9" data-type="4w">
+                            <label for="delete_9" class="main__sort-label">Последние 4 недели</label>
+                        </li>
+                        <li class="main__sort-item">
+                            <input type="radio" class="main__sort-radio js_delete_radio" name="delete_sort_cache"
+                                id="delete_10" data-type="a">
+                            <label for="delete_10" class="main__sort-label">Все время</label>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </main>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
